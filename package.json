@@ -2,7 +2,7 @@
   "name": "csv-json-converter-for-redirection",
   "author": "Marco Baradel",
   "description": "angular application to convert csv to json for wordpress plugin redirection",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "app.js",
   "scripts": {
     "ng": "ng",

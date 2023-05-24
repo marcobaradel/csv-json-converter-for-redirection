@@ -54,70 +54,140 @@ export class AppComponent {
       delimiter: ';',
       complete: (result) => {
         this.jsonData = result.data.map((row: any) => {
-          const match = row[0].endsWith('/') ? row[0].slice(0,-1) : row[0];
-          return {
-            redirect: {
-              id: '',
-              from: row[0],
-              match: match.replace(this.namePrefix, '/'),
-              to: row[1],
-              status: '1',
-              timestamp: '',
-              type: "redirection"
-            },
-            metas: {
-              ignore_trailing_slashes: "",
-              ignore_parameters: "",
-              ignore_case: "",
-              pass_on_parameters: "",
-              redirect_code: this.selectedRedirectCode,
-              inclusion_exclusion_rules: "",
-              redirect_options: "are_case",
-              redirection_http_headers: "",
-              rules_group1: {
-                enabled: "0",
-                login_info: ""
+          if(this.namePrefix !== '' && this.namePrefix.endsWith('/')){
+            this.namePrefix.slice(0,-1);
+            const match = row[0].replace(this.namePrefix, '');
+            return {
+              redirect: {
+                id: '',
+                from: row[0],
+                match: match,
+                to: row[1],
+                status: '1',
+                timestamp: '',
+                type: "redirection"
               },
-              rules_group2: {
-                enabled: "0",
-                role: "",
-                role_name: ""
-              },
-              rules_group3: {
-                enabled: "0",
-                referrer: "",
-                referrer_value: ""
-              },
-              rules_group4: {
-                enabled: "0",
-                agent: "",
-                agent_value: "",
-                agent_regex: "0"
-              },
-              rules_group5: {
-                enabled: "0",
-                cookie: "",
-                cookie_name: "",
-                cookie_value: "",
-                cookie_regex: "0"
-              },
-              rules_group6: {
-                enabled: "0",
-                ip: "",
-                ip_value: ""
-              },
-              rules_group7: {
-                enabled: "0",
-                server: "",
-                server_value: ""
-              },
-              rules_group8: {
-                enabled: "0",
-                language: "",
-                language_value: ""
+              metas: {
+                ignore_trailing_slashes: "",
+                ignore_parameters: "",
+                ignore_case: "",
+                pass_on_parameters: "",
+                redirect_code: this.selectedRedirectCode,
+                inclusion_exclusion_rules: "",
+                redirect_options: "are_case",
+                redirection_http_headers: "",
+                rules_group1: {
+                  enabled: "0",
+                  login_info: ""
+                },
+                rules_group2: {
+                  enabled: "0",
+                  role: "",
+                  role_name: ""
+                },
+                rules_group3: {
+                  enabled: "0",
+                  referrer: "",
+                  referrer_value: ""
+                },
+                rules_group4: {
+                  enabled: "0",
+                  agent: "",
+                  agent_value: "",
+                  agent_regex: "0"
+                },
+                rules_group5: {
+                  enabled: "0",
+                  cookie: "",
+                  cookie_name: "",
+                  cookie_value: "",
+                  cookie_regex: "0"
+                },
+                rules_group6: {
+                  enabled: "0",
+                  ip: "",
+                  ip_value: ""
+                },
+                rules_group7: {
+                  enabled: "0",
+                  server: "",
+                  server_value: ""
+                },
+                rules_group8: {
+                  enabled: "0",
+                  language: "",
+                  language_value: ""
+                }
               }
-            }
-          };
+            };
+          } else if (this.namePrefix !== '' && !this.namePrefix.endsWith('/')) {
+            const match = row[0].replace(this.namePrefix, '');
+            return {
+              redirect: {
+                id: '',
+                from: row[0],
+                match: match,
+                to: row[1],
+                status: '1',
+                timestamp: '',
+                type: "redirection"
+              },
+              metas: {
+                ignore_trailing_slashes: "",
+                ignore_parameters: "",
+                ignore_case: "",
+                pass_on_parameters: "",
+                redirect_code: this.selectedRedirectCode,
+                inclusion_exclusion_rules: "",
+                redirect_options: "are_case",
+                redirection_http_headers: "",
+                rules_group1: {
+                  enabled: "0",
+                  login_info: ""
+                },
+                rules_group2: {
+                  enabled: "0",
+                  role: "",
+                  role_name: ""
+                },
+                rules_group3: {
+                  enabled: "0",
+                  referrer: "",
+                  referrer_value: ""
+                },
+                rules_group4: {
+                  enabled: "0",
+                  agent: "",
+                  agent_value: "",
+                  agent_regex: "0"
+                },
+                rules_group5: {
+                  enabled: "0",
+                  cookie: "",
+                  cookie_name: "",
+                  cookie_value: "",
+                  cookie_regex: "0"
+                },
+                rules_group6: {
+                  enabled: "0",
+                  ip: "",
+                  ip_value: ""
+                },
+                rules_group7: {
+                  enabled: "0",
+                  server: "",
+                  server_value: ""
+                },
+                rules_group8: {
+                  enabled: "0",
+                  language: "",
+                  language_value: ""
+                }
+              }
+            };
+          } else {
+            return false;
+          }
         });
         
         const json = JSON.stringify(this.jsonData, null, 2);
