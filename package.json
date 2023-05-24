@@ -1,12 +1,19 @@
 {
   "name": "csv-json-converter-for-redirection",
-  "version": "0.0.0",
+  "author": "Marco Baradel",
+  "description": "angular application to convert csv to json for wordpress plugin redirection",
+  "version": "1.0.0",
+  "main": "app.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng build --base-href ./ && electron .",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "private": true,
   "dependencies": {
@@ -18,6 +25,8 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "ngx-papaparse": "^7.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -26,13 +35,20 @@
     "@angular-devkit/build-angular": "^14.2.8",
     "@angular/cli": "~14.2.8",
     "@angular/compiler-cli": "^14.2.0",
+    "@electron-forge/cli": "^6.1.1",
+    "@electron-forge/maker-deb": "^6.1.1",
+    "@electron-forge/maker-rpm": "^6.1.1",
+    "@electron-forge/maker-squirrel": "^6.1.1",
+    "@electron-forge/maker-zip": "^6.1.1",
     "@types/jasmine": "~4.0.0",
+    "electron": "^24.3.1",
     "jasmine-core": "~4.3.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "typescript": "~4.7.2"
+    "typescript": "~4.7.2",
+    "electron-builder": "^23.6.0"
   }
 }
